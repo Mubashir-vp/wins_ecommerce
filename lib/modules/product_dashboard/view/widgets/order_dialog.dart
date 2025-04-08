@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:wins_ecommerce/core/theme/color_class.dart';
 import 'package:wins_ecommerce/core/theme/text_style_class.dart';
 import 'package:wins_ecommerce/widgets/theme_button.dart';
+import '../../../../widgets/text_field_widget.dart';
 import '../../models/order_model.dart';
 import '../../models/product_model.dart';
 import '../../provider/order_provider.dart';
@@ -27,13 +28,19 @@ class _OrderDialogState extends State<OrderDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Order ${widget.product.name}'),
+      backgroundColor: ColorsClass.f7f7f7,
+      title: Center(
+          child: Text(
+        'Order ${widget.product.name}',
+        style: TextStyleClass.mulishBoldBlack18,
+      )),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
             children: [
+              const SizedBox(height: 10),
               _buildTextField(_nameController, 'Full Name', TextInputType.name),
               const SizedBox(height: 10),
               _buildTextField(
@@ -63,7 +70,7 @@ class _OrderDialogState extends State<OrderDialog> {
                 },
                 label: "Cancel",
                 color: ColorsClass.f7f7f7,
-                    style: TextStyleClass.mulishSemiBlack14,
+                style: TextStyleClass.mulishSemiBlack14,
               )),
               Expanded(
                   child: ThemeButton(
@@ -84,22 +91,31 @@ class _OrderDialogState extends State<OrderDialog> {
 
   Widget _buildTextField(
       TextEditingController controller, String label, TextInputType inputType) {
-    return TextFormField(
+    return TextFieldWidget(
       controller: controller,
-      keyboardType: inputType,
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-        isDense: true,
-      ),
-      validator: (value) {
-        if (value == null || value.isEmpty) return 'Required';
-        if (inputType == TextInputType.number && int.tryParse(value) == null) {
-          return 'Enter a valid number';
-        }
-        return null;
-      },
+      textInputType: inputType,
+      label: label,
+      fillColor: ColorsClass.f1,
+      isFilled: true,
     );
+
+    //   TextFormField(
+    //   controller: controller,
+    //   keyboardType: inputType,
+    //   decoration: InputDecoration(
+    //     labelStyle: TextStyleClass.hintTextStyle,
+    //     labelText: label,
+    //     border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+    //     isDense: true,
+    //   ),
+    //   validator: (value) {
+    //     if (value == null || value.isEmpty) return 'Required';
+    //     if (inputType == TextInputType.number && int.tryParse(value) == null) {
+    //       return 'Enter a valid number';
+    //     }
+    //     return null;
+    //   },
+    // );
   }
 
   Future<void> _submitOrder() async {

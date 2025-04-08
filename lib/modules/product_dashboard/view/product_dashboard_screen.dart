@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'package:wins_ecommerce/core/theme/color_class.dart';
+import 'package:wins_ecommerce/core/theme/text_style_class.dart';
 import 'package:wins_ecommerce/modules/product_dashboard/view/widgets/skeleton_card.dart';
 import '../provider/product_provider.dart';
 import 'widgets/product_card.dart';
@@ -13,7 +15,9 @@ class ProductDashboardScreen extends StatelessWidget {
     final productProvider = Provider.of<ProductProvider>(context);
 
     return Scaffold(
-        appBar: AppBar(title:  Text('WINS GROUP AJMAN')),
+        appBar: AppBar(
+          backgroundColor: ColorsClass.f7f7f7,
+            title:  Text('WINS GROUP AJMAN',style: TextStyleClass.mulishBoldBlack18,)),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: productProvider.loading
@@ -25,8 +29,8 @@ class ProductDashboardScreen extends StatelessWidget {
                         : productProvider.products.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      crossAxisSpacing: 16,
+                      crossAxisCount: 5,
+                      crossAxisSpacing: 18,
                       mainAxisSpacing: 16,
                       childAspectRatio: 0.7,
                     ),
@@ -53,7 +57,7 @@ class ProductDashboardScreen extends StatelessWidget {
                   : productProvider.products.length,
               gridDelegate:
               const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
+                crossAxisCount: 5,
                 crossAxisSpacing: 16,
                 mainAxisSpacing: 16,
                 childAspectRatio: 0.7,

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:wins_ecommerce/core/theme/color_class.dart';
+import 'package:wins_ecommerce/core/theme/text_style_class.dart';
 import 'package:wins_ecommerce/widgets/theme_button.dart';
 import '../../models/product_model.dart';
 import 'order_dialog.dart';
@@ -11,6 +13,7 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: ColorsClass.f7f7f7,
       elevation: 6,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
       child: Column(
@@ -30,10 +33,18 @@ class ProductCard extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
-                Text(product.name,
-                    style: const TextStyle(fontWeight: FontWeight.bold)),
-                const SizedBox(height: 6),
-                Text('\$${product.price.toStringAsFixed(2)}'),
+                Text(
+                  product.name,
+                  style: TextStyleClass.mulishBoldBlack18.copyWith(
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(
+                  height: 6,
+                ),
+                Text('\$${product.price.toStringAsFixed(
+                  2,
+                )}'),
                 const SizedBox(height: 12),
                 ThemeButton(
                     function: () {
@@ -43,13 +54,7 @@ class ProductCard extends StatelessWidget {
                       );
                     },
                     label: "Order Now")
-                // ElevatedButton(
-                //   onPressed: () => showDialog(
-                //     context: context,
-                //     builder: (_) => OrderDialog(product: product),
-                //   ),
-                //   child: const Text('Order Now'),
-                // )
+
               ],
             ),
           )
