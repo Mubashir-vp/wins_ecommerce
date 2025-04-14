@@ -33,19 +33,23 @@ class ProductCard extends StatelessWidget {
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
+
                 Text(
                   product.name,
                   style: TextStyleClass.mulishBoldBlack18.copyWith(
-                    fontSize: 16,
+                    fontSize: 14,
+
                   ),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(
-                  height: 6,
+                  height: 2,
                 ),
                 Text('\$${product.price.toStringAsFixed(
                   2,
                 )}'),
-                const SizedBox(height: 12),
+                const SizedBox(height: 4),
                 ThemeButton(
                     function: () {
                       showDialog(
@@ -54,7 +58,6 @@ class ProductCard extends StatelessWidget {
                       );
                     },
                     label: "Order Now")
-
               ],
             ),
           )
